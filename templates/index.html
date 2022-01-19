@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Absenteesim</title>
+	<link
+      rel="stylesheet"
+      href="{{url_for('static', filename='fontawesome.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+</head>
+<body style="background-image: url(./static/001.jpeg);">
+	<div style="background-color: rgba(0,0,0,0.5); height: 100%;">
+
+    <div style="height: 800px; display: grid;">
+    	<div class="text-center" style="margin-top: auto; margin-bottom: auto">
+    		      <h1 class="text-center display-4" style="color: #fff;">
+        <b>Employee Absentism</b>
+      </h1>
+     <hr/>
+    		<p class="lead" style="color: #fff; padding-left: 2rem; padding-right: 2rem">Employee absenteeism is established with the sole aim to facilitate any corporate individual to predict whether an employee will be absent or not in the working hour.</p>
+    		<a class="btn btn-lg btn-danger" href="/predict">Predict</a>
+    	</div>
+	</div>
+
+</div>
+	
+
+	
+<script src="{{ url_for('static', filename='jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

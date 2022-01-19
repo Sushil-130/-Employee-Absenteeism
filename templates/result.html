@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Absentism</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='fontawesome.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+  </head>
+  <body background="{{ url_for('static', filename='001.jpeg') }}">
+    <div style="background-color: rgba(0,0,0,0.6); height: 800px; color: #fff">
+    <div class="container">
+      <br />
+      <h2 class="text-center display-4">
+        Employee Absentism
+      </h2>
+      <br /><br />
+
+      <form method="POST" action="/predict">
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+              <h4>Primary Reason:</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="reason"
+                  value="1"
+                  checked
+                />
+                <label class="form-check-label">
+                  Disease
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="reason"
+                  value="2"
+                />
+                <label class="form-check-label">
+                  Pregnancy
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="reason"
+                  value="3"
+                />
+                <label class="form-check-label">
+                  Food Poisoning
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="reason"
+                  value="4"
+                />
+                <label class="form-check-label">
+                  Light Reasons
+                </label>
+              </div>
+              <br />
+              <br />
+              <h4>Month</h4>
+              <select class="custom-select" name="monthvalue" required>
+                <option value="" selected disabled>Select a Month</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+
+              <br />
+              <h4 style="margin-top: 1rem;">Day</h4>
+              <select class="custom-select" name="day" required>
+                <option value="" selected disabled>Select a Day</option>
+                <option value="1">Sunday</option>
+                <option value="2">Monday</option>
+                <option value="3">Tuesday</option>
+                <option value="4">Wednesday</option>
+                <option value="5">Thursday</option>
+                <option value="6">Friday</option>
+                <option value="7">Saturday</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <h4>Transportation</h4>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon2">Rs.</span>
+                </div>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="transportation"
+                  min="0"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+              </div>
+              <h4>Distance to Work</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="distancetowork"
+                  min="0"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">km</span>
+                </div>
+              </div>
+              <h4>Age</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="age"
+                  min="0"
+                  max="100"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">years</span>
+                </div>
+              </div>
+              <h4>Daily Work</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="dailywork"
+                  min="0"
+                  max="1440"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"
+                    >minutes</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <h4>Body Mass</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="bmi"
+                  min="0"
+                  max="120"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">BMI</span>
+                </div>
+              </div>
+              <h4>Education</h4>
+              <select
+                class="custom-select"
+        name="education"
+        required
+                style="margin-bottom: 1rem;"
+              >
+                <option value="" selected disabled>Select education</option>
+                <option value="0">Highschool</option>
+                <option value="1">Other</option>
+              </select>
+              <h4>Children</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="children"
+                  min="0"
+                  max="10"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+              </div>
+              <h4>Pets</h4>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="pet"
+                  min="0"
+                  max="10"
+                  required
+                  aria-describedby="basic-addon2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Predict</button>
+      </form>
+    </div>
+
+   <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Prediction</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center" style="color: #000;">
+            Prediction: {{ result }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <div class="container">
+        <form method="POST" action="/predict">
+          <input
+            type="number"
+            name="reason1"
+            placeholder="Reason1"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="reason2"
+            placeholder="Reason2"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="reason3"
+            placeholder="Reason3"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="reason4"
+            placeholder="Reason4"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="monthvalue"
+            placeholder="monthvalue"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="day"
+            placeholder="day"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="transportation"
+            placeholder="transportation"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="distancetowork"
+            placeholder="distancetowork"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="age"
+            placeholder="age"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="dailywork"
+            placeholder="dailywork"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="bmi"
+            placeholder="body mass index"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="education"
+            placeholder="education"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="children"
+            placeholder="children"
+            required="true"
+          /><br />
+          <input
+            type="number"
+            name="pet"
+            placeholder="pet"
+            required="true"
+          /><br />
+          <input type="submit" value="Make Prediction" /><br />
+        </form>
+      </div> -->
+    </div>
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+      $('#myModal').modal({
+        show: true
+      })
+    </script>
+  </body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Absentism | Result</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='fontawesome.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 class="text-center">Prediction {{ result }}</h2>
+    </div>
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
+ -->
